@@ -4,10 +4,11 @@ const router = require('./controllers/userController')
 require('dotenv').config()
 const app = express()
 const port = 3500
+const cors = require('cors')
 
 app.use(express.json())
 // app.use(cookieParser())
-// app.use(cors())
+app.use(cors())
 
 // app.get('/register', (req, res) => {
 //       res.send('merde it worked')

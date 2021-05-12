@@ -12,7 +12,7 @@ export class App extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this); 
-        this.register = this.register.bind(this);     
+        this.signup = this.signup.bind(this);     
     }
 
     handleChange(e){
@@ -22,10 +22,10 @@ export class App extends Component {
         })
     }
 
-    register(e){
+    signup(e){
         e.preventDefault();
         console.log(this.state)
-        axios.post('http://127.0.0.1:3500/register', 
+        axios.post('http://localhost:3500/user/signup', 
                    this.state
         ).then ((response) => {
             console.log(response)
@@ -33,7 +33,7 @@ export class App extends Component {
             console.log(err)
         })
     }
-
+    
     render() {
         return (
             <div>
@@ -43,7 +43,7 @@ export class App extends Component {
                     <input type='text' id='email' value={this.state.email} onChange={this.handleChange}></input>
                     <label>password :</label>
                     <input type='text' id='password' value={this.state.password} onChange={this.handleChange}></input>
-                    <button onClick={this.register}>Submit</button>
+                    <button onClick={this.signup}>Submit</button>
             </div>
         )
     }

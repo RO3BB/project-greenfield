@@ -51,7 +51,7 @@ export class Register extends React.Component {
                     <input type='text' id='email' value={this.state.email} onChange={this.handleChange}></input>
                     <label>Password : </label>
                     <input type='text' id='password' value={this.state.password} onChange={this.handleChange}></input>
-                    <button onClick={this.signup}>Signup</button>
+                    <button onClick={() => {this.signup();this.props.toggleView('ProductList');}}>Signup</button>
                     
                 </div>
             </div>

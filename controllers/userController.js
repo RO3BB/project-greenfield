@@ -20,17 +20,17 @@ const userController = {
             password: 'mierda258'||passwordHash,
         });
         await newUser.save();
+        
+        const accesstoken = createAccessToken({ id: user._id });
+        const refreshtoken = createRefreshToken({ id: user._id });
+        
+        res.cookie("refreshtoken", refreshtoken, {
+            httpOnly: true,
+            path: "user/refresh_token",
+            maxAge: 7 * 24 * 60 * 60 * 1000, // seven days
+        });
+        
         return res.status(200).json({ newUser });
-
-    //   const accesstoken = createAccessToken({ id: user._id });
-    //   const refreshtoken = createRefreshToken({ id: user._id });
-
-    //   res.cookie("refreshtoken", refreshtoken, {
-    //     httpOnly: true,
-    //     path: "user/refresh_token",
-    //     maxAge: 7 * 24 * 60 * 60 * 1000, // seven days
-    //   });
-
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

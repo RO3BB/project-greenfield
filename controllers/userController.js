@@ -31,8 +31,6 @@ const userController = {
         });
         
         return res.status(200).json({ newUser });
-<<<<<<< HEAD
-=======
         
         // const accesstoken = createAccessToken({ id: user._id });
         // const refreshtoken = createRefreshToken({ id: user._id });
@@ -44,7 +42,6 @@ const userController = {
         // });
         // res.json({ accesstoken });
         
->>>>>>> 534b18bb8533f35cd1d39ada9da994b2cc105e5b
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

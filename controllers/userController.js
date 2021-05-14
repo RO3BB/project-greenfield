@@ -8,8 +8,8 @@ const userController = {
     try {
       const { name, email, password } = req.body;
       const user = await User.findOne({ email });
-      if (user) return res.status(400).json({ msg: "email already exists" });
-      if (password.length < 8) return res.status(400).json({ msg: "short password" });
+      if (user) return res.status(200).json({ msg: "email already exists" });
+      if (password.length < 8) return res.status(200).json({ msg: "short password" });
       // Password encryption
       const passwordHash = await bcrypt.hash(password, 10);
 
@@ -43,12 +43,13 @@ const userController = {
 
       const user = await User.findOne({ email });
       //const admin = await User.findOne({ email }) && (user.role===1)
-      if (!user) return res.status(400).json({ msg: "User does not exist" });
+      if (!user) return res.status(200).json({ msg: "User does not exist" });
 
       const isMatch = await bcrypt.compare(password, user.password);
+      //console.log(isMatch)
       if (!isMatch)
-        return res.status(400).json({ msg: "Sorry, Incorrect password" });
-      return res.status(200).json({ email: 'this user logged in'  });
+        return res.status(200).json({ msg: "Sorry, Incorrect password" });
+      return res.status(200).json({ msg: 'this user logged in'  });
 
       // if the password match
       /*const accesstoken = createAccessToken({ id: user._id });

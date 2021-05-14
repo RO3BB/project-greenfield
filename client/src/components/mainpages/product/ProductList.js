@@ -2,11 +2,7 @@ import React from 'react';
 import ProductDetails from './ProductDetails.js';
 
  class ProductList extends React.Component {
-    constructor(props) {
-        super(props);
-        
-    }
-
+   
     render() {
         return (
             <div>

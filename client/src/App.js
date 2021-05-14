@@ -24,11 +24,20 @@ class App extends React.Component {
     }
 
     render() {
+<<<<<<< HEAD
         return (
             <div>
                 {this.props.isLoggedIn === true 
                     ? <ProductList products={this.state.products}  />
                     : <Register  change={this.handleChangeView}/>
+=======
+        const isLoggedIn = this.props.isLoggedIn;
+        return (
+            <div>
+                {isLoggedIn
+                    ? <ProductList products={this.state.products} />
+                    : <Register onClick={() => this.handleLoginClick()} />
+>>>>>>> 198b6badabb9815d9a7a66a8cc844b3337472bc7
                 }
             </div>
         )

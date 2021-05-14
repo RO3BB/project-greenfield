@@ -1,31 +1,34 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-export class Register extends React.Component {
+class Register extends React.Component {
     constructor() {
         super();
         this.state = {
             name: '',
             email: '',
-            password: ''
-            
+            emailLog: '',
+            password: '',
+            passwordLog:''
+            // isLoggedIn: true
         }
-
         this.handleChange = this.handleChange.bind(this);
         this.signup = this.signup.bind(this);
+        this.signin = this.signin.bind(this);
+        // this.handleLoginClick = this.handleLoginClick.bind(this);
     }
+    // handleLoginClick(e) {
+    //     e.preventDefault()
+    //     this.setState({ isLoggedIn: true });
+    // }
 
     handleChange(e) {
-        console.log(e.target.value)
         this.setState({
             [e.target.id]: e.target.value
         })
     }
 
-    signup(e) {
-        e.preventDefault();
-        // console.log(this.state)
+    signup() {
         axios.post('http://localhost:3500/user/signup',
             {
                 name: this.state.name,
@@ -39,10 +42,23 @@ export class Register extends React.Component {
         })
     }
 
+    signin() {
+        axios.post('http://localhost:3500/user/login',
+            {
+                emailLog: this.state.emailLog,
+                passwordLog: this.state.passwordLog
+            }
+        ).then((data) => {
+            console.log(data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     render() {
+        // const isLoggedIn = this.state.isLoggedIn;
         return (
             <div>
-
                 <div>
                     <h4>SIGNUP</h4>
                     <label>Name : </label>
@@ -51,8 +67,15 @@ export class Register extends React.Component {
                     <input type='text' id='email' value={this.state.email} onChange={this.handleChange}></input>
                     <label>Password : </label>
                     <input type='text' id='password' value={this.state.password} onChange={this.handleChange}></input>
-                    <button onClick={() => {this.signup();this.props.toggleView('ProductList');}}>Signup</button>
-                    
+                    <button onClick={() => this.signup()}>Signup</button>
+                </div>
+                <div>
+                    <h4>SIGNIN</h4>
+                    <label>E-mail : </label>
+                    <input type='text' id='emailLog' value={this.state.emailLog} onChange={this.handleChange}></input>
+                    <label>Password : </label>
+                    <input type='text' id='passwordLog' value={this.state.passwordLog} onChange={this.handleChange}></input>
+                    <button onClick={() => this.signin()}>signin</button>
                 </div>
             </div>
         )

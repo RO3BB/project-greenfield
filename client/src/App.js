@@ -1,11 +1,9 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
-//import axios from 'axios';
 import ProductList from './components/mainpages/product/ProductList.js'
-import Authentication from './components/mainpages/auth/Authentication.js';
+import Register from './components/mainpages/auth/Register.js';
 
 
-export class App extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,23 +12,24 @@ export class App extends React.Component {
                 { name: "name2", owner: "owner2", description: "description2" },
                 { name: "name3", owner: "owner3", description: "description3" }
             ],
-            currentView: "Authentication",
+            isLoggedIn: false
         }
-        this.changeView = this.changeView.bind(this)
+        this.handleLoginClick = this.handleLoginClick.bind(this);
 
     }
-    changeView(view) {
-        this.setState({
-            currentView: view
-        })
+    handleLoginClick(e) {
+        e.preventDefault()
+        console.log('clicked');
+        this.setState({ isLoggedIn: true });
     }
     render() {
+        const isLoggedIn = this.state.isLoggedIn;
         return (
             <div>
-                <div>
-                    {this.state.currentView === "Authentication" ? (<Authentication />):
-                    (<ProductList products={this.state.products} />)}
-                </div>
+                {isLoggedIn
+                    ? <ProductList products={this.state.products} onClick={()=>this.handleLoginClick} />
+                    : <Register  />
+                }
             </div>
         )
     }

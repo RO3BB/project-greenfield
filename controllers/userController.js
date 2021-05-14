@@ -43,7 +43,7 @@ const userController = {
 
       const user = await User.findOne({ email });
       //const admin = await User.findOne({ email }) && (user.role===1)
-      if (!user) return res.status(200).json({ msg: "User does not exist" });
+      if (!user) return res.status(200).json({ msg: "User does not exist Please Register" });
 
       const isMatch = await bcrypt.compare(password, user.password);
       //console.log(isMatch)

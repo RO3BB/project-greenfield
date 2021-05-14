@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const app = express()
-const port = 3500
+const port = 3500 
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
@@ -31,5 +31,6 @@ mongoose.connect(URI, {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  //console.log(`Example app listening at http://localhost:${port}`)
+  console.log('exemple runnig'+ port)
 })

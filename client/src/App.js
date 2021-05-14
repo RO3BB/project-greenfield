@@ -13,9 +13,7 @@ export class App extends React.Component {
                 { name: "name2", owner: "owner2", description: "description2" },
                 { name: "name3", owner: "owner3", description: "description3" }
             ],
-            currView: "register",
         }
-
     }
 
     render() {

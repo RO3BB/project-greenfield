@@ -23,12 +23,12 @@ class App extends React.Component {
         this.setState({ isLoggedIn: true });
     }
     render() {
-        const isLoggedIn = this.state.isLoggedIn;
+        const isLoggedIn = this.props.isLoggedIn;
         return (
             <div>
                 {isLoggedIn
-                    ? <ProductList products={this.state.products} onClick={()=>this.handleLoginClick} />
-                    : <Register  />
+                    ? <ProductList products={this.state.products} />
+                    : <Register onClick={() => this.handleLoginClick()} />
                 }
             </div>
         )

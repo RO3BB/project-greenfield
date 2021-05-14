@@ -2,14 +2,14 @@ import React from 'react';
 import axios from 'axios';
 
 class Register extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             name: '',
             email: '',
             emailLog: '',
             password: '',
-            passwordLog:''
+            passwordLog:'',
             // isLoggedIn: true
         }
         this.handleChange = this.handleChange.bind(this);
@@ -43,12 +43,13 @@ class Register extends React.Component {
     }
 
     signin() {
-        axios.post('http://localhost:3500/user/login',
+        axios.post('/user/login',
             {
                 emailLog: this.state.emailLog,
                 passwordLog: this.state.passwordLog
             }
         ).then((data) => {
+            this.props.change()            
             console.log(data)
         }).catch((err) => {
             console.log(err)

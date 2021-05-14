@@ -1,85 +1,40 @@
-import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-import axios from 'axios';
+import React from 'react';
+import ProductList from './components/mainpages/product/ProductList.js'
+import Register from './components/mainpages/auth/Register.js';
 
-export class App extends Component {
-    constructor() {
-        super();
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
-            name: '',
-            email: '',
-            emailLog: '',
-            password: '',
-            passwordLog: '',
+            products: [
+                { name: "name1", owner: "owner1", description: "description1" },
+                { name: "name2", owner: "owner2", description: "description2" },
+                { name: "name3", owner: "owner3", description: "description3" }
+            ],
+            isLoggedIn: false
         }
+        this.handleLoginClick = this.handleLoginClick.bind(this);
 
-        this.handleChange = this.handleChange.bind(this);
-        this.signup = this.signup.bind(this);
-        this.login = this.login.bind(this)
     }
-
-    handleChange(e) {
-        console.log(e.target.value)
-        this.setState({
-            [e.target.id]: e.target.value
-        })
+    handleLoginClick(e) {
+        e.preventDefault()
+        console.log('clicked');
+        this.setState({ isLoggedIn: true });
     }
-
-    signup(e) {
-        e.preventDefault();
-        // console.log(this.state)
-        axios.post('http://localhost:3500/user/signup',
-            {
-                name: this.state.name,
-                email: this.state.email,
-                password: this.state.password
-            }
-        ).then((response) => {
-            console.log(response)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
-
-    login(e) {
-        e.preventDefault();
-        console.log(this.state.emailLog)
-        axios.post('http://localhost:3500/user/login',
-            {
-                email: this.state.emailLog,
-                password: this.state.passwordLog
-            }
-        ).then((response) => {
-            console.log(response)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
-
-
-
     render() {
+        const isLoggedIn = this.props.isLoggedIn;
         return (
             <div>
-                <div><h3>SIGNUP</h3>
-                    <label>name :</label>
-                    <input type='text' id='name' value={this.state.name} onChange={this.handleChange}></input>
-                    <label>email :</label>
-                    <input type='text' id='email' value={this.state.email} onChange={this.handleChange}></input>
-                    <label>password :</label>
-                    <input type='text' id='password' value={this.state.password} onChange={this.handleChange}></input>
-                    <button onClick={this.signup}>signup</button>
-                </div>
-                <div><h3>LOGIN</h3>
-                    <label>email :</label>
-                    <input type='text' id='emailLog' value={this.state.emailLog} onChange={this.handleChange}></input>
-                    <label>password :</label>
-                    <input type='text' id='passwordLog' value={this.state.passwordLog} onChange={this.handleChange}></input>
-                    <button onClick={this.login}>login</button>
-                </div>
+                {isLoggedIn
+                    ? <ProductList products={this.state.products} />
+                    : <Register onClick={() => this.handleLoginClick()} />
+                }
             </div>
         )
     }
 }
 
 export default App;
+
+

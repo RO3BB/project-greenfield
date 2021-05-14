@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 //import ReactDOM from 'react-dom';
 import axios from 'axios';
 
@@ -33,7 +33,8 @@ export class Register extends React.Component {
                 password: this.state.password
             }
         ).then((data) => {
-            console.log(data)
+            console.log(data.data)
+            alert(data.data.msg)
         }).catch((err) => {
             console.log(err)
         })
@@ -59,4 +60,4 @@ export class Register extends React.Component {
     }
 }
 
-export default Register;
+export default Register;*/

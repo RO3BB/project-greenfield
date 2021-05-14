@@ -1,10 +1,10 @@
-import React from 'react';
+/*import React from 'react';
 //import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 export class Login extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: ''
@@ -26,7 +26,8 @@ export class Login extends React.Component {
         //console.log(this.state.email)
         axios.post('http://localhost:3500/user/login',this.state
         ).then((data) => {
-            console.log(data)
+            console.log(data.data)
+            alert(data.data.msg)
         }).catch((err) => {
             console.log(err)
         })
@@ -50,4 +51,4 @@ export class Login extends React.Component {
     }
 }
 
-export default Login;
+export default Login;*/

@@ -64,7 +64,7 @@ class ProductList extends React.Component {
             password: this.state.passwordLog
         }
         ).then((response) => {
-            console.log(response)
+            console.log(response.data.msg)
             alert(response.data.msg)
             if (response.data.msg === 'this user logged in')
                 this.setState({ productForm: true })
@@ -74,7 +74,6 @@ class ProductList extends React.Component {
         })
     }
 
-
     addToCart(prod) {
         console.log(prod)
         var currentCart = [];
@@ -83,9 +82,31 @@ class ProductList extends React.Component {
         this.setState({ card: currentCart })
     }
 
+    addProduct() {
+        axios.post('http://localhost:3500/user/product', {
+            card: this.state.card
+        }).then(() => {
+            console.log('recieved...........')
+        })
+    }
+    /*addCart=()=> {
+        console.log(this.state.name);
+        axios.post('http://localhost:3001/create', {
+          name: this.state.name,
+          age: this.state.age,
+          country: this.state.country,
+          position: this.state.position,
+          wage: this.state.wage
+        }).then(() => {
+          console.log('success send');*/
+
+
+
+
     render() {
         return (
             <div>
+
                 <Container>
                     <Row>
                         <Col>Register</Col>
@@ -96,7 +117,7 @@ class ProductList extends React.Component {
                         </Badge></Col>
                     </Row>
                 </Container>
-                
+
                 {this.state.productForm ? <div><h1>Product Component{this.state.cart.length}</h1>
 
                     {

@@ -13,7 +13,8 @@ app.use(cookieParser())
 app.use(cors());
 
 
-app.use('/user', require('./routes/userRoute.js'))
+app.use('/user', require('./routes/userRoute.js'));
+app.use('/user', require('./routes/productRouter.js'));
 
 
 

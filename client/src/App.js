@@ -14,14 +14,15 @@ class App extends React.Component {
             ],
             isLoggedIn: false
         }
-        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleChangeView = this.handleChangeView.bind(this);
+    }
 
+    handleChangeView(){
+        this.setState({
+            isLoggedIn: true
+        })
     }
-    handleLoginClick(e) {
-        e.preventDefault()
-        console.log('clicked');
-        this.setState({ isLoggedIn: true });
-    }
+
     render() {
         const isLoggedIn = this.props.isLoggedIn;
         return (

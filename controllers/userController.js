@@ -49,13 +49,13 @@ const userController = {
 
   login: async (req, res) => {
     try {
-      const { email, password } = req.body;
+      const { emailLog , passwordLog } = req.body;
 
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ emailLog });
       //const admin = await User.findOne({ email }) && (user.role===1)
       if (!user) return res.status(200).json({ msg: "User does not exist" });
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(passwordLog, user.password);
       //console.log(isMatch)
       if (!isMatch)
         return res.status(200).json({ msg: "Sorry, Incorrect password" });

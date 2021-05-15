@@ -6,14 +6,14 @@ const port = 3500
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
-
+const router = require('./routes/userRoute.js')
 
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(cors());
 
 
-app.use('/user', require('./routes/userRoute.js'))
+app.use('/user', router)
 
 
 

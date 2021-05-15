@@ -10,7 +10,11 @@ class Register extends React.Component {
             emailLog: '',
             password: '',
             passwordLog:'',
+<<<<<<< HEAD
+            // isLoggedIn: true
+=======
             isLoggedIn: true
+>>>>>>> 198b6badabb9815d9a7a66a8cc844b3337472bc7
         }
         this.handleChange = this.handleChange.bind(this);
         this.signup = this.signup.bind(this);
@@ -42,12 +46,13 @@ class Register extends React.Component {
     }
 
     signin() {
-        axios.post('http://localhost:3500/user/login',
+        axios.post('/user/login',
             {
                 emailLog: this.state.emailLog,
                 passwordLog: this.state.passwordLog
             }
         ).then((data) => {
+            this.props.change()            
             console.log(data)
         }).catch((err) => {
             console.log(err)

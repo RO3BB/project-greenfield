@@ -10,19 +10,11 @@ class Register extends React.Component {
             emailLog: '',
             password: '',
             passwordLog:'',
-<<<<<<< HEAD
-            // isLoggedIn: true
-=======
             isLoggedIn: true
->>>>>>> 198b6badabb9815d9a7a66a8cc844b3337472bc7
         }
         this.handleChange = this.handleChange.bind(this);
         this.signup = this.signup.bind(this);
         this.signin = this.signin.bind(this);
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-    }
-    handleLoginClick() {
-        this.setState({ isLoggedIn: true });
     }
 
     handleChange(e) {
@@ -46,13 +38,13 @@ class Register extends React.Component {
     }
 
     signin() {
-        axios.post('/user/login',
+        axios.post('http://localhost:3500/user/login',
             {
                 emailLog: this.state.emailLog,
                 passwordLog: this.state.passwordLog
             }
         ).then((data) => {
-            this.props.change()            
+            this.props.changeView()
             console.log(data)
         }).catch((err) => {
             console.log(err)
@@ -60,7 +52,6 @@ class Register extends React.Component {
     }
 
     render() {
-        const isLoggedIn = this.state.isLoggedIn;
         return (
             <div>
                 <div>
@@ -71,7 +62,7 @@ class Register extends React.Component {
                     <input type='text' id='email' value={this.state.email} onChange={this.handleChange}></input>
                     <label>Password : </label>
                     <input type='text' id='password' value={this.state.password} onChange={this.handleChange}></input>
-                    <button onClick={() => {this.signup();this.handleLoginClick(isLoggedIn)}}>Signup</button>
+                    <button onClick={() => this.signup()}>Signup</button>
                 </div>
                 <div>
                     <h4>SIGNIN</h4>
@@ -79,7 +70,7 @@ class Register extends React.Component {
                     <input type='text' id='emailLog' value={this.state.emailLog} onChange={this.handleChange}></input>
                     <label>Password : </label>
                     <input type='text' id='passwordLog' value={this.state.passwordLog} onChange={this.handleChange}></input>
-                    <button onClick={() => {this.signin();this.handleLoginClick(isLoggedIn)}}>signin</button>
+                    <button onClick={() => this.signin()}>signin</button>
                 </div>
             </div>
         )
